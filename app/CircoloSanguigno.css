@@ -1,0 +1,127 @@
+/* CircoloSanguigno.css */
+
+.contenitore-gioco-er {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f7fa;
+}
+
+/* Pseudo-elemento aggiornato per rendere la foto meno opacizzata (più visibile) */
+.contenitore-gioco-er::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/backgrounds/sala-operatoria.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Calibrato al 22%: incrementa la nitidezza senza coprire le linee ematiche */
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- ANIMAZIONI FLUSSO (ARCHI) --- */
+.react-flow__edge-path {
+  stroke-dasharray: 8;
+  animation: flusso-lento 3s linear infinite;
+}
+@keyframes flusso-lento {
+  from {
+    stroke-dashoffset: 32;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.flusso-accelerato path.react-flow__edge-path {
+  stroke-dasharray: 4 !important;
+  animation: flusso-rapido 0.8s linear infinite !important;
+}
+@keyframes flusso-rapido {
+  from {
+    stroke-dashoffset: 16;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.flusso-critico path.react-flow__edge-path {
+  stroke-dasharray: 10 !important;
+  animation: flusso-lento 6s linear infinite !important;
+}
+
+.flusso-bloccato path.react-flow__edge-path {
+  stroke-dasharray: 12 !important;
+  animation: none !important;
+}
+
+/* --- EFFETTI NODI --- */
+@keyframes pulsazione-cuore {
+  0% {
+
+    box-shadow: 0 0 12px rgba(211, 47, 47, 0.4);
+  }
+  50% {
+
+    box-shadow: 0 0 20px rgba(211, 47, 47, 0.7);
+  }
+  100% {
+
+    box-shadow: 0 0 12px rgba(211, 47, 47, 0.4);
+  }
+}
+.cuore-pulsante {
+  animation: pulsazione-cuore 0.42s ease-in-out infinite !important;
+}
+
+@keyframes cianosi-agonica {
+  0% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: inset 0 0 15px rgba(13, 71, 161, 0.3);
+  }
+  100% {
+    opacity: 0.85;
+  }
+}
+.nodo-cianotico {
+  animation: cianosi-agonica 2s ease-in-out infinite !important;
+}
+
+/* Reserve real space for the graph so its nodes cannot hide behind panels. */
+.area-grafo { left: 340px !important; width: calc(100% - 690px) !important; }
+.logo-er { left: calc(50% - 5px) !important; }
+.pannello-cure { max-height: calc(100dvh - 315px); overflow-y: auto; }
+.react-flow__edge:not(.animated) .react-flow__edge-path { animation: none; }
+.sidebar canvas { width: 100%; height: auto; }
+
+@media (max-width: 1100px) {
+  .contenitore-gioco-er {
+    position: relative; height: auto; min-height: 100dvh;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px; padding: 16px; overflow: visible;
+  }
+  .logo-er { position: relative !important; top: auto !important; left: auto !important; transform: none !important; grid-column: 1 / -1; justify-self: center; }
+  .area-grafo { position: relative !important; top: auto !important; left: auto !important; width: 100% !important; height: 65dvh !important; min-height: 460px; grid-column: 1 / -1; grid-row: 2; }
+  .pannello-controllo, .pannello-cure, .sidebar { position: relative !important; top: auto !important; left: auto !important; right: auto !important; width: 100% !important; height: auto !important; max-height: none; }
+  .pannello-controllo > div { width: 100% !important; }
+  .sidebar { grid-column: 1 / -1; border-radius: 8px; }
+}
+@media (max-width: 620px) {
+  .contenitore-gioco-er { grid-template-columns: minmax(0, 1fr); padding: 10px; }
+}
