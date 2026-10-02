@@ -30,7 +30,7 @@ export const scenariAccidentali = {
   },
   embolia: {
     id: "embolia",
-    label: "Emolia Polmonare Massiva",
+    label: "Embolia Polmonare Massiva",
     icona: "⚠️",
     descrizione:
       "Ostruzione dell arteria polmonare. Blocco dello scambio gassoso.",

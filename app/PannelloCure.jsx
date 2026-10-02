@@ -60,6 +60,8 @@ export default function PannelloCure({
                     return (
                         <button
                             key={cura.id}
+                            disabled={pazienteMorto}
+                            aria-pressed={giaAttiva}
                             onClick={() => gestisciCura(cura.id)}
                             onMouseEnter={() => setIdHover(cura.id)}
                             onMouseLeave={() => setIdHover(null)}
@@ -119,5 +121,6 @@ export default function PannelloCure({
                 })}
             </div>
         </div>
+
     );
 }

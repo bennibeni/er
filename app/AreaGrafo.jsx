@@ -1,7 +1,8 @@
 // AreaGrafo.jsx
-import { Background, ReactFlow } from '@xyflow/react';
+import { Background, Panel, ReactFlow } from '@xyflow/react';
 
 export default function AreaGrafo({
+    statoSistemico,
     nodes,
     edges,
     onNodesChange,
@@ -32,12 +33,19 @@ export default function AreaGrafo({
                 onPaneClick={onPaneClick}
                 // Mantiene la centratura con un singolo livello di zoom-out all avvio
                 fitView
-                fitViewOptions={{ padding: 0.45, includeHiddenNodes: false }}
+                fitViewOptions={{ padding: 0.16, includeHiddenNodes: false }}
                 minZoom={0.2}
                 maxZoom={1.5}
+                nodesConnectable={false}
+                deleteKeyCode={null}
             >
                 {/* I controlli di zoom manuali e la minimappa sono stati rimossi da qui */}
                 <Background variant="dots" gap={16} size={1} />
+                {(statoSistemico.isArresto || statoSistemico.segnali.emorragia) && <Panel position="bottom-center">
+                    <div className={`segnale-circolo ${statoSistemico.isArresto ? 'circolo-fermo' : ''}`} role="status">
+                        {statoSistemico.isArresto ? '■ Circolo fermo' : statoSistemico.segnali.perditaCompensata ? '🩸 Perdita di sangue · volume compensato' : '🩸 Perdita di sangue · flusso ridotto'}
+                    </div>
+                </Panel>}
             </ReactFlow>
         </div>
     );

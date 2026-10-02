@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'R42 — ER · Turno di guardia',
+  title: 'ER · Turno di guardia',
   description: 'Simulatore interattivo del circolo sanguigno con monitor ECG, scenari e interventi.',
 };
 
