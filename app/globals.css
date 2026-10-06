@@ -1,5 +1,22 @@
-* { box-sizing: border-box; }
-body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #243440; background: #f5f7fa; }
-button, input { font: inherit; }
-button:disabled { cursor: not-allowed !important; opacity: .55; }
-button:focus-visible, input:focus-visible { outline: 3px solid #0284c7; outline-offset: 3px; }
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #243440;
+  background: #f5f7fa;
+}
+button,
+input {
+  font: inherit;
+}
+button:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.55;
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 3px;
+}
